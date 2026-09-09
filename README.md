@@ -1,4 +1,4 @@
-# Trabajo-IyRdCI
+# Trabajo-irci
 
 ### Integrantes
 * *Santiago Ferrer Petit.*
