@@ -1,0 +1,13 @@
+.section ".text"
+	addi $sp, $zero, 0xFFC
+	addi $s0, $zero, 50       // outer count
+calib_outer:
+	addi $s1, $zero, 60000    // inner count
+calib_inner:
+	addi $s1, $s1, -1
+	bne $s1, $zero, calib_inner
+
+	addi $s0, $s0, -1
+	bne $s0, $zero, calib_outer
+
+	trap 1

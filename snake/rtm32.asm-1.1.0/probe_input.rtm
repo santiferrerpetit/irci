@@ -1,0 +1,22 @@
+.section ".text"
+	addi $sp, $zero, 0xFFC
+
+	addi $s0, $zero, 0x1000   // buffer write cursor
+	addi $s1, $zero, 0        // iteration counter
+	addi $t2, $zero, -0x100   // 0xFFFFFF00 direccion UART
+
+probe_loop:
+	lbu $t1, 0($t2)
+	sb $t1, 0($s0)
+	addi $s0, $s0, 1
+
+	addi $t4, $zero, 1000
+probe_delay:
+	addi $t4, $t4, -1
+	bne $t4, $zero, probe_delay
+
+	addi $s1, $s1, 1
+	addi $t5, $zero, 500
+	blt $s1, $t5, probe_loop
+
+	trap 1
